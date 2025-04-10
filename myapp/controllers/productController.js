@@ -14,7 +14,11 @@ const productController = {
     },
     add: function (req, res){
         res.render('product-add');
-    }
+    },
+    search: function (req, res) {
+        var texto = req.params.texto;
+        res.render('search-results', { productos: data.productos, texto: texto });
+      }
 }
 
 module.exports = productController;

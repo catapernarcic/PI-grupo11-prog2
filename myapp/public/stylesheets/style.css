@@ -1,8 +1,16 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto Mono', monospace;
+
 }
 
 a {
-  color: #00B7FF;
+  color: #0b18a9;
+  font-family: 'Shadows Into Light', cursive;
+  text-decoration: none;
 }
+h1, h2, h3, .logo {
+  font-family: 'Shadows Into Light', cursive;
+}
+

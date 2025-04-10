@@ -4,6 +4,9 @@ const router = express.Router();
 const productController = require('../controllers/productController');
 
 
+router.get('/add', productController.add);
+router.get('/search/:texto', productController.search);
 router.get('/:id', productController.detalle);
+
 
 module.exports = router;
