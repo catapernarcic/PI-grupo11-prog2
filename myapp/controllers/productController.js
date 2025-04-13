@@ -1,6 +1,9 @@
 const data = require('../db/data')
 
 const productController = {
+    list: function (req, res) {
+        res.render('products', { productos: data.productos });
+      },
     detalle: function (req, res) {
         let id = +req.params.id;
         let productoBuscado = null;
