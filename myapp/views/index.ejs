@@ -17,8 +17,8 @@
 <body>
 
 	<!-- Header -->
-	<% if (usuario) { %>
-		<%- include('partials/headerLogueado', { usuario: usuario }) %>
+	<% if (sesion) { %>
+		<%- include('partials/headerLogueado') %>
 	  <% } else { %>
 		<%- include('partials/headerNoLogueado') %>
 	<% } %>
