@@ -2,19 +2,8 @@ const data = require('../db/data')
 
 const productController = {
     list: function (req, res) {
-        res.render('products', { productos: data.productos, usuario: data.usuario });
+        res.render('products', { productos: data.productos, usuario: data.usuario, id: req.params.id });
       },
-    detalle: function (req, res) {
-        let id = +req.params.id;
-        let productoBuscado = null;
-
-        for (let i = 0; i < data.productos.length; i++) {
-            if (data.productos[i].id === id) {
-                productoBuscado = data.productos[i]
-            } 
-        }
-        res.render('product', {producto: productoBuscado})
-    },
     add: function (req, res){
         res.render('product-add',
         {usuario: data.usuario} )
