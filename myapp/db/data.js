@@ -5,14 +5,14 @@ const data = {
         contrasena: "123456",
         fechaNacimiento: "2000-05-31",
         nroDocumento: 12345678,
-        fotoPerfil: ""
+        fotoPerfil: "/images/users/fotoperfil.png"
     },
     productos: [
         {
             id: 1,
             nombre: "Laptop Gamer X1",
             descripcion: "Potente laptop con procesador i7 y tarjeta gráfica RTX 3060.",
-            imagen: "",
+            imagen: "/images/products/05dhzg0lrtq4i0d3wxqyjjakwmbmzr331426.png.avif",
             comentarios: [
                 { usuario: "Ana", texto: "¡Me encantó esta laptop!", fotoPerfil: "" },
                 { usuario: "Carlos", texto: "Rinde muy bien para gaming.", fotoPerfil: "" },
@@ -23,7 +23,7 @@ const data = {
             id: 2,
             nombre: "Smartphone Pro 12",
             descripcion: "Pantalla OLED, cámara de 108MP y batería de 5000mAh.",
-            imagen: "",
+            imagen: "/images/products/img-samsung-galaxy-s10.jpg",
             comentarios: [
                 { usuario: "Pedro", texto: "La cámara es increíble.", fotoPerfil: "" },
                 { usuario: "María", texto: "Me dura todo el día la batería.", fotoPerfil: "" },
@@ -34,7 +34,7 @@ const data = {
             id: 3,
             nombre: "Auriculares Inalámbricos Z3",
             descripcion: "Cancelación de ruido y sonido envolvente.",
-            imagen: "",
+            imagen: "/images/products/auricularesinalambricos.webp",
             comentarios: [
                 { usuario: "Dani", texto: "Se escuchan genial.", fotoPerfil: "" },
                 { usuario: "Sofía", texto: "Son súper cómodos.", fotoPerfil: "" },
@@ -45,7 +45,7 @@ const data = {
             id: 4,
             nombre: "Airpods Apple",
             descripcion: "Auriculares inalambricos por bluetooth",
-            imagen: "",
+            imagen: "/images/products/airpods.jpg",
             comentarios: [
                 { usuario: "Teo", texto: "Muy comods", fotoPerfil: "" },
                 { usuario: "Cata", texto: "Faciles de transportar", fotoPerfil: "" },
@@ -56,7 +56,7 @@ const data = {
             id: 5,
             nombre: "Smartwatch Galaxy Watch Active2",
             descripcion: "Un reloj inteligente con monitoreo de actividad y notificaciones.",
-            imagen: "",
+            imagen: "/images/products/smartwatchgalaxy.webp",
             comentarios: [
                 { usuario: "Mar", texto: "Me encanta su diseño, aunque a veces se congela", fotoPerfil: "" },
                 { usuario: "Lucia", texto: "Es practico, pero la bateria no dura tanto", fotoPerfil: "" },
@@ -67,7 +67,7 @@ const data = {
             id: 6,
             nombre: "Tablet iPad Air 2020",
             descripcion: "Tablet ligera y potente",
-            imagen: "",
+            imagen: "/images/products/ipadair.jpg",
             comentarios: [
                 { usuario: "Ana", texto: "La pantalla es nítida, me encanta", fotoPerfil: "" },
                 { usuario: "Cata", texto: "La bateria anda bien, pero se siente algo lenta en algunas apps", fotoPerfil: "" },
@@ -78,7 +78,7 @@ const data = {
             id: 7,
             nombre: "Auriculares inalámbricos Sony WF-1000XM4",
             descripcion: "Auriculares con cancelación de ruido, ideales para escuchar música sin distracciones.",
-            imagen: "",
+            imagen: "/images/products/auricularesinalambricosSony.jpg",
             comentarios: [
                 { usuario: "Sofi", texto: "La calidad de sonido es increíble, aunque a veces se desconectan", fotoPerfil: "" },
                 { usuario: "Rosa", texto: "Muy cómodos", fotoPerfil: "" },
@@ -89,7 +89,7 @@ const data = {
             id: 8,
             nombre: "Mouse Gamer Logitech G502",
             descripcion: "Un mouse personalizable para gamers, con alta precisión y botones programables.",
-            imagen: "",
+            imagen: "/images/products/mousegamer.jpg",
             comentarios: [
                 { usuario: "Juan", texto: "Lo uso y me encanta la respuesta", fotoPerfil: "" },
                 { usuario: "Mica", texto: "Buen mouse", fotoPerfil: "" },
@@ -100,7 +100,7 @@ const data = {
             id: 9,
             nombre: "Teclado mecánico Razer BlackWidow",
             descripcion: "Teclado con switches mecánicos veloces, excelente para escribir y jugar.",
-            imagen: "",
+            imagen: "/images/products/teclado.webp",
             comentarios: [
                 { usuario: "Paula", texto: "Me encanta el sonido de las teclas", fotoPerfil: "" },
                 { usuario: "Isa", texto: "Buen teclado, aunque a veces es medio ruidoso", fotoPerfil: "" },
@@ -111,7 +111,7 @@ const data = {
             id: 10,
             nombre: "Monitor LED LG UltraWide 27\"",
             descripcion: "Monitor ultra ancho ideal para multitarea y diseño.",
-            imagen: "",
+            imagen: "/images/products/medium01.jpg.avif",
             comentarios: [
                 { usuario: "Mateo", texto: "La calidad de imagen es buena, me encanta como amplía la pantalla", fotoPerfil: "" },
                 { usuario: "Tomas", texto: "Es genial para editar fotos y videos", fotoPerfil: "" },

@@ -13,6 +13,9 @@
 	<link rel="stylesheet" href="/css/bootstrap-grid.min.css">
 	<!-- Own Stylesheet -->
 	<link rel="stylesheet" href="/css/app.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Shadows+Into+Light&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -26,13 +29,13 @@
 	
 	<!-- Banner -->
 	<div class="banner">
-		<img src="/images/img-home-banner.jpg" alt="Banner de ofertas">
+		
 	</div>
 	<!-- /Banner -->
 
 	<!-- Novedades -->
 	<div class="container products-wrapper">
-		<div class="row">
+
 			<div class="col-12">
 				<h2 class="products-title">Productos</h2>
 			</div>
@@ -40,12 +43,12 @@
 		
 			<!-- Mostrar productos -->
 <!-- Mostrar productos -->
-<div class="col-12 col-sm-6 col-lg-3" id="contenedor">
+<div  id="contenedor">
 	<% for (let i = 0; i < productos.length; i++) { %>
 	  <section class="product-box">
 		<a href="/products/detalle/<%= productos[i].id %>">
 		  <figure class="product-box_image">
-			<img src="<%= productos[i].imagen %>" alt="<%= productos[i].nombre %>">
+			<img src="<%= productos[i].imagen %>" alt="<%= productos[i].nombre %>" class="imagen_clase">
 		  </figure>
 		  <article class="product-box_data">
 			<h2><%= productos[i].nombre %></h2>
