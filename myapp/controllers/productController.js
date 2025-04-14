@@ -16,7 +16,8 @@ const productController = {
         res.render('product', {producto: productoBuscado})
     },
     add: function (req, res){
-        res.render('product-add');
+        res.render('product-add',
+        {usuario: data.usuario} )
     },
     search: function (req, res) {
         var texto = req.params.texto;
