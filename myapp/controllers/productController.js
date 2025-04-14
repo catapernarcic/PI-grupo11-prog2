@@ -2,7 +2,7 @@ const data = require('../db/data')
 
 const productController = {
     list: function (req, res) {
-        res.render('products', { productos: data.productos });
+        res.render('products', { productos: data.productos, usuario: data.usuario });
       },
     detalle: function (req, res) {
         let id = +req.params.id;
@@ -20,8 +20,7 @@ const productController = {
         {usuario: data.usuario} )
     },
     search: function (req, res) {
-        var texto = req.params.texto;
-        res.render('search-results', { productos: data.productos, texto: texto });
+        res.render('search-results', { productos: data.productos, texto: "texto buscado"});
       }
 }
 

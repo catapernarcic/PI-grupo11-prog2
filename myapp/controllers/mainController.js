@@ -2,7 +2,7 @@ const data = require('../db/data');
 
 const mainController = {
     home: function (req, res) {
-      res.render('index', {productos: data.productos})  
+      res.render('index' ,{productos: data.productos})  
     },
 
     search: function (req, res) {

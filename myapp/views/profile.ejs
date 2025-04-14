@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link width="" rel="shortcut icon" href="/images/logo-mercado-liebre.jpg" />
 	
-	<title> Mercado Liebre Argentina</title>
+	<title> Maquitec</title>
 			<!-- Font Awesome Stylesheet -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 	<!-- Bootstrap Grid Stylesheet -->
@@ -19,21 +19,16 @@
 	<%- include('partials/headerLogueado', { usuario: usuario }) %>
 	<!-- /Header -->
 
-	<section class="Perfil">
-		<h1><%= usuario.nombre %></h1>
-		<p><%= usuario.email %></p>
-		<img src="<%= usuario.fotoPerfil %>" alt="Foto de perfil" class="foto-perfil">
-	</section>
 
 	<!-- Datos del usuario -->
 	<section class="info-usuario container products-wrapper">
 		<div class="row">
 			<div class="img-container offset-3 col-2">
-				<img src="https://via.placeholder.com/150" alt="foto de perfil" class="foto-perfil">
+				<img src="<%= usuario.fotoPerfil %>" alt="foto de perfil" class="foto-perfil">
 			</div>
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
-					<h1 class="main-title">Nombre del usuario 
+					<h1 class="main-title"><%= usuario.usuario %>
 						<a href="/profile/edit"> 
 							<!-- agregar esta ruta -->
 							<i class="fas fa-cog"></i>
@@ -43,6 +38,7 @@
 				</div>
 				<div>
 					<ul class="">
+						<li>Email: <%= usuario.email %></li>
 						<li>8 productos</li>
 						<li>200 seguidores</li>
 						<li>300 comentarios</li>
