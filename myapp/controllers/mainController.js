@@ -2,7 +2,10 @@ const data = require('../db/data');
 
 const mainController = {
     home: function (req, res) {
-      res.render('index' ,{productos: data.productos,  usuario: data.usuario, sesion: true})  
+      res.render('index' ,{productos: data.productos,
+                          usuario: req.session.user, 
+                          sesion: (req.session.user !== undefined)
+                          })  
     },
 
     search: function (req, res) {

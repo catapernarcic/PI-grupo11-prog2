@@ -1,6 +1,6 @@
 const data = require('../db/data');
 const bcrypt = require('bcryptjs');
-const db = require('../db/models'); 
+const db = require('../database/models'); 
 const User = db.User;
 
 const userController = {
@@ -13,12 +13,17 @@ const userController = {
         
     },
     login: function (req,res) {
-        res.render('login', {sesion: false});
+        if (req. session && req.session.user != undefined) {
+            return res.redirect('/')
+        } else {
+            res.render('login', {sesion: false});
+        }
+
     },
     processRegister: function (req, res){
-        const { username, email, password, birthdate, dni, fotop } = req.body;
+        const { username, email, password, nacimiento, dni, fotop } = req.body;
         //validaciones:
-        if (email === '' || password === '') {
+        if (email === '' && password === '') {
             return res.send('El email y la contraseña son obligatorios');
           }
           if (password.length < 3) {
@@ -34,16 +39,16 @@ const userController = {
             //hashear contraseña
 
             const hashedPassword = bcrypt.hashSync(password, 10);
-            
+
             //creo usuario
             User.create({
                 email: email,
                 contrasena: hashedPassword,
-                fechaNacimiento: req.body.birthdate, 
-                dni: req.body.dni,
-                fotoPerfil: req.body.avatar
+                fechaNacimiento: nacimiento, 
+                dni: dni,
+                fotoPerfil: fotop
             })
-            .then(function() {
+            .then(function() { //aca tengo que poner algo en el parametro?
                 res.redirect('/users/login');
             })
             .catch(function(error) {
@@ -53,13 +58,49 @@ const userController = {
         .catch(function(error) {
             return res.send(error);
         });
+    },
+
+    processLogin: function(req, res) {
+        console.log(req.body);
+        const {usuario, password, recordarme} = req.body;
+        
+        User.findOne({ where: {email: usuario}})
+        .then(function(user) {
+            if (!user){
+                return res.send("El usuario o contrasenia son incorrectos. ")
+            }
+
+            const contraEsOK = bcrypt.compareSync(password, user.contrasena);
+
+            if (!contraEsOK) {
+                return res.send("El usuario o contrasenia son incorrectos. ")
+            }
+            req.session.user ={
+                id: user.id,
+                email: user.email
+
+            };
+
+            if (recordarme) {
+                res.cookie('userEmail', user.email, { maxAge: 1000 * 60 * 5});
+            }
+            res.redirect('/');
 
 
+        })
+        .catch(function(error) {
+            return res.send(error);
+        });
+    },
 
-
-    
-
+    logout: function(req, res) {
+        req.session.destroy(function() {
+            res.clearCookie('userEmail');
+            res.redirect('/')
+        })
     }
 };
+
+
 
 module.exports = userController;

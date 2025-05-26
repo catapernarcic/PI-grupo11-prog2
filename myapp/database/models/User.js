@@ -17,10 +17,10 @@ module.exports = function(sequelize, dataTypes) {
             allowNull: false
         },
         fechaNacimiento: {
-            type: dataTypes.DATE,
+            type: dataTypes.DATE
         },
         dni: {
-            type: dataTypes.INTEGER,
+            type: dataTypes.INTEGER
         },
         fotoPerfil: {
             type: dataTypes.STRING(500)
