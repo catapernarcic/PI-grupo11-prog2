@@ -5,8 +5,21 @@ const data = require('../db/data')
 const { where } = require("sequelize");
 
 const productController = {
-    list: function (req, res) {
-        res.render('products', { productos: data.productos, usuario: data.usuario, id: req.params.id, sesion: true});
+    detalle: function (req, res) {
+
+      let IdProducto = req.params.id;
+
+      db.Product.findByPk(IdProducto, {
+        include: [{association: "user"}]
+      })
+      .then(function (buscado) {
+        if (!buscado) {
+          return res.send("No se encotnro el detalle de ese producto")
+        } else {
+          res.render('products', {productos: buscado, id: IdProducto, usuario: req.session.usuario})
+        }
+      })
+       //res.render('products', { productos: data.productos, usuario: data.usuario, id: req.params.id, sesion: true});
       },
     add: function (req, res){
         res.render('product-add',{usuario: data.usuario, sesion: true})

@@ -45,7 +45,7 @@
 					<p><%= producto.descripcion %></p>
 					<p><strong>Cargado por:</strong> 
 						<% if (producto.user) { %>
-						  <a href="/users/<%= producto.user.id %>"><%= producto.user.nombre %></a>
+						  <a href="/users/<%= producto.user.id %>"><%= producto.user.email %></a>
 						<% } else { %>
 						  Usuario no disponible
 						<% } %>
