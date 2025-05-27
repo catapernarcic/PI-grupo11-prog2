@@ -1,5 +1,5 @@
-/* module.exports= function(sequelize, dataTypes) {
-    let alias = Coment;
+ module.exports= function(sequelize, dataTypes) {
+    let alias = "Coment";
 
     let cols = {
         id: {
@@ -38,4 +38,4 @@
     const Coment = sequelize.define(alias, cols, config);
 
     return Coment;
-} */
+} 

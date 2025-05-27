@@ -20,8 +20,8 @@
 
 <body>
 	<!-- Header -->
-	<% if (usuario) { %>
-		<%- include('partials/headerLogueado', { usuario: usuario }) %>
+	<% if (sesion) { %>
+		<%- include('partials/headerLogueado', { sesion: usuario }) %>
 	  <% } else { %>
 		<%- include('partials/headerNoLogueado') %>
 		<% } %>
@@ -34,14 +34,26 @@
 				<h2 class="products-title">Resultados de búsqueda</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
+			 <% if (productos.length === 0) { %>
+			  <h3>No hay resultados para su busqueda </h3>
+			 <% } else { %>
 			<h2 class="col-12" Resultados para: <%= texto %> > 
 				<% productos.forEach(producto => { %> 
 				<div>
 					<h3><%= producto.nombre %></h3>
-					<img src="<%= producto.imagen %>" alt="">
+					<img src="<%= producto.imagen %>" alt="<%= producto.nombre %>">
+					<p><%= producto.descripcion %></p>
+					<p><strong>Cargado por:</strong> 
+						<% if (producto.user) { %>
+						  <a href="/users/<%= producto.user.id %>"><%= producto.user.nombre %></a>
+						<% } else { %>
+						  Usuario no disponible
+						<% } %>
+					  </p>
 				</div>
 				<% }) %>
 			</h2>
+			<% } %>
 
 
 	<!-- footer -->
