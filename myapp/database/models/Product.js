@@ -43,7 +43,15 @@
             foreignKey: 'usuarioId',
             as: 'user'
         })
+        Product.hasMany(models.Coment, {
+            foreignKey: 'productoId',
+            as: 'comentarios'
+          });
         
      }
+
+
+
+
         return Product;
  }

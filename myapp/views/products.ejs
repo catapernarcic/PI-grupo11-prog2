@@ -20,7 +20,12 @@
 	<!-- Header -->
 	
 	<!-- /Header -->
-	<%- include('partials/headerLogueado') %>
+	 <% if (usuario) { %>
+		<%- include('partials/headerLogueado') %>
+	 <% } else {%> 
+		<%- include('partials/headerNoLogueado') %>
+	<% } %>
+	
 	<!-- product detail -->
 	<% for( let i = 0; i < productos.length; i++ ) { %>
 		<% if (productos[i].id == id) { %>

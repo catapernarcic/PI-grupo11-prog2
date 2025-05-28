@@ -34,8 +34,15 @@
         timestamps: true,
         underscored: false
     };
-
     const Coment = sequelize.define(alias, cols, config);
+    
+    Coment.associate = function (models) {
+        Coment.belongsTo(models.Product, {
+            foreignKey: 'productoId',
+            as: 'producto'
+          });
+    }
+
 
     return Coment;
 } 

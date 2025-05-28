@@ -13,7 +13,7 @@ const userController = {
         
     },
     login: function (req,res) {
-        if (req. session && req.session.user != undefined) {
+        if (req. session && req.session.usuario != undefined) {
             return res.redirect('/')
         } else {
             res.render('login', {sesion: false});
@@ -75,7 +75,7 @@ const userController = {
             if (!contraEsOK) {
                 return res.send("El usuario o contrasenia son incorrectos. ")
             }
-            req.session.user ={
+            req.session.usuario ={
                 id: user.id,
                 email: user.email
 
@@ -98,6 +98,17 @@ const userController = {
             res.clearCookie('userEmail');
             res.redirect('/')
         })
+    },
+    mostrarPerfil: function (req, res) {
+        let idUsuario = req.params.id;
+        db.User.findByPk(idUsuario)
+        .then(function (user) {
+            if (!user) {
+                return res.send("Usuario no encontrado");
+            } 
+            res.render('profile', { perfil: user, usuario: req.session.usuario });
+        })
+        .catch(err => res.send(err));
     }
 };
 

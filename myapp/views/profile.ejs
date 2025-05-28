@@ -18,7 +18,11 @@
 </head>
 <body>
 	<!-- Header -->
-	<%- include('partials/headerLogueado', { usuario: usuario }) %>
+	<% if (usuario) { %>
+		<%- include('partials/headerLogueado') %>
+	 <% } else {%> 
+		<%- include('partials/headerNoLogueado') %>
+	<% } %>
 	<!-- /Header -->
 
 
@@ -26,11 +30,11 @@
 	<section class="info-usuario container products-wrapper">
 		<div class="row">
 			<div class="img-container offset-3 col-2">
-				<img src="<%= usuario.fotoPerfil %>" alt="foto de perfil" class="foto-perfil">
+				<img src="<%= perfil.fotoPerfil %>" alt="foto de perfil" class="foto-perfil">
 			</div>
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
-					<h1 class="main-title"><%= usuario.usuario %>
+					<h1 class="main-title"><%= perfil.usuario %>
 						<a href="/profile/edit"> 
 							<!-- agregar esta ruta -->
 							<i class="fas fa-cog"></i>
@@ -40,7 +44,7 @@
 				</div>
 				<div>
 					<ul class="">
-						<li>Email: <%= usuario.email %></li>
+						<li>Email: <%= perfil.email %></li>
 						<li>8 productos</li>
 						<li>200 seguidores</li>
 						<li>300 comentarios</li>

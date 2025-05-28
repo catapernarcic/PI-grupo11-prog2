@@ -33,9 +33,9 @@ app.use('/products', productRouter);
 
 app.use(function (req, res, next) {
     if (req.session.user) {
-      res.locals.usuarioLogueado = req.session.user; 
+      res.locals.usuario = req.session.user; 
   } else {
-      res.locals.usuarioLogueado = null;
+      res.locals.usuario = null;
   }
     return next()
 });

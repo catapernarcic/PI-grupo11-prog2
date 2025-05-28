@@ -10,13 +10,15 @@ const productController = {
       let IdProducto = req.params.id;
 
       db.Product.findByPk(IdProducto, {
-        include: [{association: "user"}]
+        include: [{association: "user"},
+          { association: "comentarios" }
+        ]
       })
       .then(function (buscado) {
         if (!buscado) {
           return res.send("No se encotnro el detalle de ese producto")
         } else {
-          res.render('products', {productos: buscado, id: IdProducto, usuario: req.session.usuario})
+          res.render('products', {productos: [buscado], id: IdProducto, usuario: req.session.usuario})
         }
       })
        //res.render('products', { productos: data.productos, usuario: data.usuario, id: req.params.id, sesion: true});
@@ -43,7 +45,7 @@ const productController = {
           if(encontrados.length === 0){
             res.send("No hay resultados para su busqueda");
           } else {
-            res.render('search-results', {productos: encontrados, texto: buscado, sesion: req.session.usuario});
+            res.render('search-results', {productos: encontrados, texto: buscado, usuario: req.session.usuario});
           }
         })
         .catch(function (error) {

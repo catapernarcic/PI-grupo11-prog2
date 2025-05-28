@@ -20,11 +20,11 @@
 
 <body>
 	<!-- Header -->
-	<% if (sesion) { %>
-		<%- include('partials/headerLogueado', { sesion: usuario }) %>
-	  <% } else { %>
+	<% if (usuario) { %>
+		<%- include('partials/headerLogueado') %>
+	 <% } else {%> 
 		<%- include('partials/headerNoLogueado') %>
-		<% } %>
+	<% } %>
 	<!-- /Header -->
 
 	<!-- Novedades -->
@@ -40,7 +40,10 @@
 			<h2 class="col-12" Resultados para: <%= texto %> > 
 				<% productos.forEach(producto => { %> 
 				<div>
-					<h3><%= producto.nombre %></h3>
+					<a href="/products/detalle/<%= producto.id %>">
+						<h3><%= producto.nombre %></h3>
+						<img src="<%= producto.imagen %>" alt="<%= producto.nombre %>">
+					</a>
 					<img src="<%= producto.imagen %>" alt="<%= producto.nombre %>">
 					<p><%= producto.descripcion %></p>
 					<p><strong>Cargado por:</strong> 
