@@ -51,6 +51,17 @@
 					</ul>
 				</div>
 			</div>
+			<p>Cantidad de productos cargados: <%= cantidad %></p>
+
+	<ul>
+ 		 <% productos.forEach(function(producto) { %>
+   		 <li>
+     		 <a href="/productos/<%= producto.id %>">
+        	<%= producto.nombre %>
+      		</a>
+   		 </li>
+ 		 <% }) %>
+	</ul>
 		</div>
 	</section>
 	<!-- /Datos del usuario -->

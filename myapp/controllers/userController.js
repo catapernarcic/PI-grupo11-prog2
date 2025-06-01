@@ -5,7 +5,29 @@ const User = db.User;
 
 const userController = {
     perfil: function (req, res) {
-        res.render('profile', {usuario: data.usuario, sesion: true})
+        if (!req.session.usuario) {
+            return res.redirect('/users/login');
+        }
+    
+        // Buscar los datos del usuario y sus productos
+        db.User.findByPk(req.session.usuario.id, {
+            include: [{ model: db.Producto }]
+        })
+        .then(function(user) {
+            if (!user) {
+                return res.send("Usuario no encontrado");
+            }
+    
+            const productos = user.Productos; 
+            const cantidad = productos.length;
+    
+            res.render('profile', {
+                perfil: user,             
+                productos: productos,     
+                cantidad: cantidad,       
+                usuario: req.session.usuario 
+            });
+        })
         
     },
     register: function (req, res) {
