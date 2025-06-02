@@ -26,19 +26,23 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+app.use(function (req, res, next) {
+  if (req.session.user) {
+    res.locals.usuario = req.session.user; 
+} else {
+    res.locals.usuario = null;
+}
+  return next()
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productRouter);
 
-app.use(function (req, res, next) {
-    if (req.session.user) {
-      res.locals.usuario = req.session.user; 
-  } else {
-      res.locals.usuario = null;
-  }
-    return next()
-});
+
+
+
+
 
 
 

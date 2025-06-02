@@ -18,7 +18,8 @@ const productController = {
         if (!buscado) {
           return res.send("No se encotnro el detalle de ese producto")
         } else {
-          res.render('products', {productos: [buscado], id: IdProducto, usuario: req.session.usuario})
+        res.render('products', {productos: [buscado], id: IdProducto, usuario: req.session.usuario})
+         //return res.send(IdProducto)
         }
       })
        //res.render('products', { productos: data.productos, usuario: data.usuario, id: req.params.id, sesion: true});
