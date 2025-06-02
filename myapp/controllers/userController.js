@@ -16,6 +16,7 @@ const userController = {
         })
         .then(function (productos) {
              res.render("profile", {
+                 perfil: req.session.usuario,  
                  usuario: req.session.usuario,
                  productos: productos
              });
