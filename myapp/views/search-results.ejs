@@ -42,9 +42,8 @@
 				<div>
 					<a href="/products/detalle/<%= producto.id %>">
 						<h3><%= producto.nombre %></h3>
-						<img src="<%= producto.imagen %>" alt="<%= producto.nombre %>">
 					</a>
-					<img src="<%= producto.imagen %>" alt="<%= producto.nombre %>">
+					<img src="/images/products/<%= producto.imagen %>" alt="producto">
 					<p><%= producto.descripcion %></p>
 					<p><strong>Cargado por:</strong> 
 						<% if (producto.user) { %>

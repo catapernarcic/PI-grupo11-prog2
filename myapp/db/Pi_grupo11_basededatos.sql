@@ -50,11 +50,11 @@ CREATE TABLE comentarios (
 -- insertar mis datos en las tablas
 
 INSERT INTO usuarios (email, contrasena, fechaNacimiento, dni, fotoPerfil) VALUES
-('ana@gmail.com', '12354', '2000-01-01', 12345678, 'ana.jpg'),
-('carlos@hotmail.com', '23456', '1995-06-15', 23456789, 'carlos.jpg'),
-('luisa@gmail.com', '34567', '1990-10-30', 34567890, 'luisa.jpg'),
-('teo@udesa.edu.ar', '45678', '1998-12-12', 45678901, 'teo.jpg'),
-('cata@udesa.edu.ar', '56789', '1997-04-25', 56789012, 'cata.jpg');
+('ana@gmail.com', '12354', '2000-01-01', 12345678, 'fotoperfil.png'),
+('carlos@hotmail.com', '23456', '1995-06-15', 23456789, 'fotoperfil.png'),
+('luisa@gmail.com', '34567', '1990-10-30', 34567890, 'fotoperfil.png'),
+('teo@udesa.edu.ar', '45678', '1998-12-12', 45678901, 'fotoperfil.png'),
+('cata@udesa.edu.ar', '56789', '1997-04-25', 56789012, 'fotoperfil.png');
 
 INSERT INTO productos (usuarioId, imagen, nombre, descripcion) VALUES
 (1, 'laptop.jpg', 'Laptop Gamer X1', 'Potente laptop con procesador i7 y tarjeta gráfica RTX 3060.'),

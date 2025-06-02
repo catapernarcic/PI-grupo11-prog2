@@ -26,6 +26,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+
 app.use(function (req, res, next) {
   if (req.session.user) {
     res.locals.usuario = req.session.user; 
@@ -34,6 +35,18 @@ app.use(function (req, res, next) {
 }
   return next()
 });
+
+
+app.use(function(req, res, next) {
+
+  if (req.cookies.userEmail != undefined && req.session.usuario == undefined) {
+    res.locals.usuario = req.cookies.usuario;
+    req.session.usuario = req.cookies.usuario;
+  }
+
+  return next();
+})
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

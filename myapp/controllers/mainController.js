@@ -7,7 +7,7 @@ const mainController = {
             include: [{ association: 'user' }]  
           })
           .then(function (productos) {
-            res.render('index', { productos: productos });
+            res.render('index', { productos: productos, usuario: req.session.usuario });
           })
           .catch(function (error) {
             return res.send(error);

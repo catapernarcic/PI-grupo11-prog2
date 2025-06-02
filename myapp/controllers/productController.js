@@ -11,7 +11,7 @@ const productController = {
 
       db.Product.findByPk(IdProducto, {
         include: [{association: "user"},
-          { association: "comentarios" }
+          { association: "comentarios", include: ["usuario"] }
         ]
       })
       .then(function (buscado) {
@@ -25,7 +25,7 @@ const productController = {
        //res.render('products', { productos: data.productos, usuario: data.usuario, id: req.params.id, sesion: true});
       },
     add: function (req, res){
-        res.render('product-add',{usuario: data.usuario, sesion: true})
+        res.render('product-add',{usuario: req.session.usuario, sesion: true})
     },
     search: function (req, res) {
         const buscado = req.query.search;
