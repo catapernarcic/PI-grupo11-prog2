@@ -40,7 +40,7 @@
 				<div class="product-detail">
 					<div class="row">
 						<article class="col-12 col-lg-8 product-detail-info">
-							<img src="/images/products/<%= productos[i].imagen %>" alt="" class="product-detail-img">
+							<img src="/images/products/<%= productos.imagen %>" alt="" class="product-detail-img">
 
 							<p class="product-detail-description">
 								<%= productos[i].descripcion %></p>
@@ -48,27 +48,23 @@
 						<div class="col-12 col-lg-4">
 							<section class="comments">
 								<% for( let r = 0; r < productos[i].comentarios.length; r++ ) { %>
+
 									<article>
-									  <img src="<%= productos[i].comentarios[r].usuario.fotoPerfil %>" alt="">
-									  <div class="data">
-										<p class="user">
-										  <strong> 
-											<a href="/users/<%= productos[i].comentarios[r].usuario.id %>">
-											  <%= productos[i].comentarios[r].usuario.email %>
-											</a> 
-										  </strong>
-										  <%= productos[i].comentarios[r].texto %>
-										</p>
-									  </div>
+										<img src="<%= productos[i].comentarios[r].fotoPerfil %>" alt="">
+										<div class="data">
+											<p class="user">
+											<strong> <a href="/users/profile"><%= productos[i].comentarios[r].sesion %> </a> </strong>
+											 <%= productos[i].comentarios[r].texto %></p>
+										</div>
 									</article>
-								  <% } %>
+								
+								<% } %>
 		
 							</section>
-								<form class="form" action="/products/comentario/<%= productos[i].id %>" method="POST">
-								  <input class="form-input" type="text" name="texto" placeholder="Agregar comentario" required>
- 								  <button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
-								</form>
-							 
+							<form class="form" action="/" method="get">
+								<input class="form-input" type="text" value="" placeholder="Agregar comentario">
+								<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
+							</form>
 							<hr>
 						</div>
 					</div>
@@ -80,8 +76,6 @@
 	
 	<% } %>
 	<!-- /product detail -->
-
-
 
 	<!-- footer -->
 	<%- include('partials/footer') %>
