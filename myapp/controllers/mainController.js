@@ -3,9 +3,7 @@ const data = require('../db/data');
 const mainController = {
     home: function (req, res) {
       res.render('index' ,{productos: data.productos,
-                          usuario: req.session.usuario, 
-                          
-                          })  
+                          usuario: req.session.usuario})  
     },
 
     search: function (req, res) {
