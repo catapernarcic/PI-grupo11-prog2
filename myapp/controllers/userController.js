@@ -5,29 +5,7 @@ const User = db.User;
 
 const userController = {
     perfil: function (req, res) {
-        if (!req.session.usuario) {
-            return res.redirect('/users/login');
-        }
-    
-        // Buscar los datos del usuario y sus productos
-        db.User.findByPk(req.session.usuario.id, {
-            include: [{ model: db.Producto }]
-        })
-        .then(function(user) {
-            if (!user) {
-                return res.send("Usuario no encontrado");
-            }
-    
-            const productos = user.Productos; 
-            const cantidad = productos.length;
-    
-            res.render('profile', {
-                perfil: user,             
-                productos: productos,     
-                cantidad: cantidad,       
-                usuario: req.session.usuario 
-            });
-        })
+        res.render('profile', {usuario: data.usuario, sesion: true})
         
     },
     register: function (req, res) {
@@ -104,7 +82,7 @@ const userController = {
             };
 
             if (recordarme) {
-                res.cookie('userEmail', user.email, { maxAge: 1000 * 60 * 5});
+                res.cookie('userEmail', user.email, { maxAge: 1000 * 60 * 5}); //creo la cookie
             }
             res.redirect('/');
 
