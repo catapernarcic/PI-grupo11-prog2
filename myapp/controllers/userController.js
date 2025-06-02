@@ -5,29 +5,7 @@ const User = db.User;
 
 const userController = {
     perfil: function (req, res) {
-        if (!req.session.usuario) {
-            return res.redirect('/users/login');
-        }
-    
-        // Buscar los datos del usuario y sus productos
-        db.User.findByPk(req.session.usuario.id, {
-            include: [{ model: db.Producto }]
-        })
-        .then(function(user) {
-            if (!user) {
-                return res.send("Usuario no encontrado");
-            }
-    
-            const productos = user.Productos; 
-            const cantidad = productos.length;
-    
-            res.render('profile', {
-                perfil: user,             
-                productos: productos,     
-                cantidad: cantidad,       
-                usuario: req.session.usuario 
-            });
-        })
+        res.render("perfil", {session: false})
         
     },
     register: function (req, res) {
@@ -123,12 +101,28 @@ const userController = {
     },
     mostrarPerfil: function (req, res) {
         let idUsuario = req.params.id;
-        db.User.findByPk(idUsuario)
+        db.User.findByPk(idUsuario, {
+            include: [{ model: db.Producto }] // Asegurate que "Producto" esté bien definido en models/index.js
+        })
         .then(function (user) {
             if (!user) {
                 return res.send("Usuario no encontrado");
             } 
-            res.render('profile', { perfil: user, usuario: req.session.usuario });
+            const productosDelUsuario = user.Productos;
+            const cantidad = productosDelUsuario.length;
+            res.render('profile', {perfil: user,
+                usuario: req.session.usuario,
+                productos: productosDelUsuario,
+                cantidad: cantidad });
+
+           
+
+    res.render('profile', {
+        perfil: user,
+        usuario: req.session.usuario,
+        productos: productosDelUsuario,
+        cantidad: cantidad
+    });
         })
         .catch(err => res.send(err));
     }
