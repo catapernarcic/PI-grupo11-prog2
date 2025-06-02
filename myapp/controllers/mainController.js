@@ -1,11 +1,17 @@
 const data = require('../db/data');
+const db = require('../database/models');
 
 const mainController = {
     home: function (req, res) {
-      res.render('index' ,{productos: data.productos,
-                          usuario: req.session.usuario, 
-                          
-                          })  
+        db.Product.findAll({
+            include: [{ association: 'user' }]  
+          })
+          .then(function (productos) {
+            res.render('index', { productos: productos });
+          })
+          .catch(function (error) {
+            return res.send(error);
+        });
     },
 
     search: function (req, res) {

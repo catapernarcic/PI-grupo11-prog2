@@ -44,20 +44,39 @@
 			<!-- Mostrar productos -->
 <!-- Mostrar productos -->
 <div  id="contenedor">
-	<% for (let i = 0; i < productos.length; i++) { %>
-	  <section class="product-box">
-		<a href="/products/detalle/<%= productos[i].id %>">
-		  <figure class="product-box_image">
-			<img src="<%= productos[i].imagen %>" alt="<%= productos[i].nombre %>" class="imagen_clase">
-		  </figure>
+	<% productos.forEach(function(producto) { %>
+		<section class="product-box">
+		  <a href="/products/detalle/<%= producto.id %>">
+			<figure class="product-box_image">
+				<% if (producto.imagen) { %>
+					<img src="<%= producto.imagen %>" alt="producto">
+				  <% } else { %>
+					<img src="/images/products/default-image.png" alt="producto">
+				  <% } %>
+			</figure>
+		  </a>
 		  <article class="product-box_data">
-			<h2><%= productos[i].nombre %></h2>
-			<p>Descripcion cort</p>
-			<p>Comentarios: <%= productos[i].comentarios.length %></p>
+			<h2>
+			  <a href="/products/detalle/<%= producto.id %>">
+				<%= producto.nombre %>
+			  </a>
+			</h2>
+			<p>
+			  Subido por: 
+			  <a href="/users/<%= producto.user.id %>">
+				<%= producto.user.email %>
+			  </a>
+			</p>
+			<p>Comentarios: 
+				<% if (producto.comentarios) { %>
+				  <%= producto.comentarios.length %>
+				<% } else { %>
+				  0
+				<% } %>
+			  </p>
 		  </article>
-		</a>
-	  </section>
-	<% } %>
+		</section>
+	  <% }); %>
   </div>
   
 

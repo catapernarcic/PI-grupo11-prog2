@@ -1,12 +1,30 @@
 const data = require('../db/data');
 const bcrypt = require('bcryptjs');
 const db = require('../database/models'); 
+const Producto = db.Product;
 const User = db.User;
 
 const userController = {
     perfil: function (req, res) {
-        res.render('profile', {usuario: data.usuario, sesion: true})
-        
+
+        if (req.session.usuario == undefined) {
+            return res.redirect('/users/login');
+        }  
+        Producto.findAll({
+            where: { usuarioId: req.session.usuario.id },
+            include: [{ association: "comentarios" }]
+        })
+        .then(function (productos) {
+             res.render("profile", {
+                 usuario: req.session.usuario,
+                 productos: productos
+             });
+            // return res.send(productos);
+        })
+        .catch(function (error) {
+            return res.send(error);
+        });
+    
     },
     register: function (req, res) {
         res.render('register', {sesion: false});
@@ -82,7 +100,7 @@ const userController = {
             };
 
             if (recordarme) {
-                res.cookie('userEmail', user.email, { maxAge: 1000 * 60 * 5}); //creo la cookie
+                res.cookie('userEmail', user.email, { maxAge: 1000 * 60 * 5});
             }
             res.redirect('/');
 
@@ -101,14 +119,27 @@ const userController = {
     },
     mostrarPerfil: function (req, res) {
         let idUsuario = req.params.id;
+
         db.User.findByPk(idUsuario)
         .then(function (user) {
             if (!user) {
                 return res.send("Usuario no encontrado");
             } 
-            res.render('profile', { perfil: user, usuario: req.session.usuario });
+    
+            db.Product.findAll({
+                where: { usuarioId: idUsuario },
+                include: [{ association: "comentarios" }]
+            })
+            .then(function (productos) {
+                res.render('profile', { perfil: user, productos: productos, usuario: req.session.usuario });
+            })
+            .catch(function (error) {
+                return res.send(error);
+            });
         })
-        .catch(err => res.send(err));
+        .catch(function (error) {
+            return res.send(error);
+        });
     }
 };
 
