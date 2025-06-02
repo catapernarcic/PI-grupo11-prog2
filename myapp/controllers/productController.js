@@ -25,6 +25,9 @@ const productController = {
        //res.render('products', { productos: data.productos, usuario: data.usuario, id: req.params.id, sesion: true});
       },
     add: function (req, res){
+        if (!req.session.usuario) {
+          return res.redirect('/users/login');
+        }
         res.render('product-add',{usuario: req.session.usuario, sesion: true})
     },
     search: function (req, res) {
@@ -53,9 +56,39 @@ const productController = {
           res.send(error);
         })
 
+      },
+      guardarProducto: function (req, res) {
+          const { nombre, descripcion, imagen } = req.body;
+          // Validar que haya un usuario logueado
+              if (!req.session.usuario) {
+                  return res.redirect('/users/login');
+              }
+              if (nombre === '') {
+                  return res.send('El nombre es obligatorio.');
+                }
+            
+                if (descripcion === '') {
+                  return res.send('La descripción es obligatoria.');
+                }
+            
+                if (imagen === '') {
+                  return res.send('La imagen es obligatoria.');
+                }
+  
+                db.Product.create({
+                  nombre: nombre,
+                  descripcion: descripcion,
+                  imagen: imagen,
+                  usuarioId: req.session.usuario.id
+                })
+                .then(function () {
+                  res.redirect("/");
+                })
+                .catch(function () {
+                  return res.send(error);
+                })
+            
       }
-
-
 
 }
 
