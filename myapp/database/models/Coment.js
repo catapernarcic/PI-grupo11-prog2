@@ -41,6 +41,10 @@
             foreignKey: 'productoId',
             as: 'producto'
           });
+          Coment.belongsTo(models.User, {
+            foreignKey: 'usuarioId',
+            as: 'usuario'  
+        });
     }
 
 

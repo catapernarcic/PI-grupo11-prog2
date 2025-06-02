@@ -88,8 +88,33 @@ const productController = {
                   return res.send(error);
                 })
             
-      }
+      },
+      guardarComentario: function (req, res) {
+        const { texto} = req.body;
+        const productoId = req.params.id;
 
-}
+        if (!req.session.usuario) {
+           return res.redirect('/users/login');
+        }
+
+        if (texto === '') {
+          return res.send('El comentario no puede estar vacío.');
+        }
+
+        db.Coment.create({
+          texto: texto,
+          usuarioId: req.session.usuario.id,
+          productoId: productoId
+        })
+        
+        .then(function () {
+          res.redirect(`/products/detalle/${productoId}`);
+        })
+        .catch(function (error) {
+          return res.send(error);
+        })
+    }
+      
+  }
 
 module.exports = productController;

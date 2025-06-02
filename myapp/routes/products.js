@@ -7,6 +7,7 @@ router.get('/detalle/:id', productController.detalle);
 router.get('/add', productController.add);
 router.get('/search', productController.search);
 router.post('/add', productController.guardarProducto); 
+router.post('/comentario/:id', productController.guardarComentario);
 
 
 module.exports = router;
