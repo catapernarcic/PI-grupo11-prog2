@@ -119,14 +119,27 @@ const userController = {
     },
     mostrarPerfil: function (req, res) {
         let idUsuario = req.params.id;
+
         db.User.findByPk(idUsuario)
         .then(function (user) {
             if (!user) {
                 return res.send("Usuario no encontrado");
             } 
-            res.render('profile', { perfil: user, usuario: req.session.usuario });
+    
+            db.Product.findAll({
+                where: { usuarioId: idUsuario },
+                include: [{ association: "comentarios" }]
+            })
+            .then(function (productos) {
+                res.render('profile', { perfil: user, productos: productos, usuario: req.session.usuario });
+            })
+            .catch(function (error) {
+                return res.send(error);
+            });
         })
-        .catch(err => res.send(err));
+        .catch(function (error) {
+            return res.send(error);
+        });
     }
 };
 
